@@ -14,6 +14,8 @@ def soma_elementos(*args):
 
 def total_vendas_por_mes(meses, *args):
     plt.plot(meses, soma_elementos(list(args)[0]))
+    plt.legend(["Total"])
+
     plt.show()
 
 

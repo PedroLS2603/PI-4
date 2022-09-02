@@ -25,6 +25,6 @@ graficoShampoo = g.Grafico('Shampoo', mes, shampoo)
 graficoHidratante = g.Grafico('Hidratante', mes, hidratante)
 
 
-# u.total_vendas_por_mes(mes, creme_facial, limpeza_facial, pasta_dentaria, sabonete, shampoo, hidratante)
-# u.vendas_de_produtos_por_mes(graficoCreme, graficoLimpeza, graficoPasta, graficoSabonete, graficoShampoo, graficoHidratante)
-# u.comparativo_por_mes(graficoCreme, graficoLimpeza)
+u.total_vendas_por_mes(mes, creme_facial, limpeza_facial, pasta_dentaria, sabonete, shampoo, hidratante)
+u.vendas_de_produtos_por_mes(graficoCreme, graficoLimpeza, graficoPasta, graficoSabonete, graficoShampoo, graficoHidratante)
+u.comparativo_por_mes(graficoCreme, graficoLimpeza)
