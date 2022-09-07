@@ -1,7 +1,7 @@
+import math
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
-
 def soma_elementos(*args):
     retorno = []
     for i in range(len(args[0])):
@@ -37,10 +37,27 @@ def comparativo_por_mes(graf1, graf2):
 
     plt.show()
 
+def hist_faixa_qtd_por_mes(lista):
+    yint = range(1, 12, 1)
+
+    plt.yticks(yint)
+    plt.hist(lista)
+    plt.show()
 
 
-def hist_faixa_qtd_por_mes():
-    pass
 
-def perc_quantidade_por_ano():
-    pass
+def perc_quantidade_por_ano(*args):
+    total = soma_elementos(list(args)[0])
+    labels = ['Creme facial', 'Limpeza facial', 'Pasta dentária', 'Sabonete', 'Shampoo', 'Hidratante']
+    total = np.array(total)
+    total = np.sum(total)
+    perc = []
+
+    for l in args:
+        lista = np.array(l)
+        totalLista = np.sum(lista)
+        perc.append((totalLista * 100) / total)
+
+    plt.figure('Porcentagem do total de venda dos produtos no ano')
+    plt.pie(perc, labels=labels, shadow=True,  autopct='%1.1f%%')
+    plt.show()
