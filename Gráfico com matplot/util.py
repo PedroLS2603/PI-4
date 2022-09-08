@@ -37,11 +37,10 @@ def comparativo_por_mes(graf1, graf2):
 
     plt.show()
 
-def hist_faixa_qtd_por_mes(lista):
-    yint = range(1, 12, 1)
+def hist_faixa_qtd_por_mes(*args):
+    listas = np.concatenate(list(args))
 
-    plt.yticks(yint)
-    plt.hist(lista)
+    plt.hist(listas)
     plt.show()
 
 
