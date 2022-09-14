@@ -43,7 +43,6 @@ def grafico_func(a, n_max=20):
     plt.ylim(top=10)
     plt.xlim(right=14)
 
-    print(y1)
     plt.plot(x, y1)
     plt.plot(x, y2)
 
