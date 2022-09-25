@@ -1,4 +1,5 @@
 import math as m
+import re
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -16,39 +17,80 @@ def str_poli_taylor(a, n_max=20):
         i += 1
     return str 
 
-def poli_taylor(valor, a, n_max = 20):
+def raiz_otimizada(valor, a, n_max=20):
+
+    if valor == 1:
+        return 1
+    elif valor == 8:
+        return 2
+    elif valor == 27:
+        return 3
+    elif valor == 64:
+        return 4
+    elif valor == 125:
+        return 5
+    elif valor == 216:
+        return 6
+
     potenciaIni = 1/3
     coeficienteIni = 1
-    i = 1
     x = coeficienteIni * (a ** potenciaIni)
-    
-    while i <= n_max:
+    for i in range(1, n_max):
         eq = df_dx(i, potenciaIni, coeficienteIni)
         coeficiente = eq[0]
         potencia = eq[1]
         x += ((coeficiente * (a ** potencia)) / m.factorial(i)) * ((valor - a) ** i)
-        i += 1
-    
+        
     return x
 
+def raiz_simples(a, x, n_max=20):
+    denominador = 1
+    valor = a ** (1/3)
+    for n in range(1, n_max):
+        numerador = 1
+        for i in range(1, n -1):
+            numerador *= (3 * n ) - (3 * i + 1)
+
+        numerador *= (x - a) ** n 
+       
+        
+        denominador = (3 ** n) * (a ** ((3 * n - 1)/3))
+        denominador = denominador * m.factorial(n)
+
+        valor += numerador /denominador
+
+    return valor
+
 def grafico_func(a, n_max=20):
-    y1 = []
-    x = np.linspace(0, 100)
+    limite = 50
+    x = np.linspace(-limite, limite, 100)
 
+    y1 = np.cbrt(x)
+    y2 = []
+    y3 = []
 
-    y2 = np.cbrt(x)
+    for valor in x: 
+        y2.append(raiz_simples(x=valor, a=a, n_max=n_max))
+
     for valor in x:
-        y1.append(poli_taylor(valor, a, n_max))
+        y3.append(raiz_otimizada(a=a, valor=valor, n_max=n_max))
 
-    plt.ylim(top=10)
-    plt.xlim(right=14)
 
-    plt.plot(x, y1)
+    plt.ylim(top=6)
+    plt.ylim(bottom=-5)
+    plt.plot(x, y1, linewidth=2.0, label="Numpy")
+    plt.plot(x, y2, linewidth=2.0, label="Taylor")
+    plt.plot(x, y3, linewidth=2.0, label="Taylor otimizada")
+
+    plt.legend()
+    plt.grid()
+    
+    plt.show()
+
+
     plt.plot(x, y2)
 
-    plt.legend(["Taylor","Numpy"])
-    plt.grid()
-    plt.show()
+
 
 # derivação de função potência
 

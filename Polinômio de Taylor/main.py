@@ -1,7 +1,10 @@
 import calc as c
 
-print(c.str_poli_taylor(5, 10))
+n = 5
+a = 15
 
-c.grafico_func(5, 10)
+print(c.str_poli_taylor(a, n))
+
+c.grafico_func(a,n)
 
 
