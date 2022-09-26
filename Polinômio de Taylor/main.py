@@ -1,6 +1,6 @@
 import calc as c
 
-n = 5
+n = 7
 a = 15
 
 print(c.str_poli_taylor(a, n))

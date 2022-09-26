@@ -9,7 +9,7 @@ enes = np.arange(1,n_max+1)
 medias = np.zeros(n_max)
 error = np.zeros(n_max)
 x = np.linspace(-20, 20, points)
-a = 1
+a = 15
 
 
 def tempo(x,n,a):
