@@ -55,7 +55,7 @@ def raiz_simples(a, x, n_max=20):
        
         
         denominador = (3 ** n) * (a ** ((3 * n - 1)/3))
-        denominador = denominador * m.factorial(n)
+        denominador *= m.factorial(n)
 
         valor += numerador /denominador
 

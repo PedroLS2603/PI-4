@@ -9,19 +9,19 @@ enes = np.arange(1,n_max+1)
 medias = np.zeros(n_max)
 error = np.zeros(n_max)
 x = np.linspace(-20, 20, points)
+a = 1
 
-def tempo(x,n):
+
+def tempo(x,n,a):
   ini = timeit.default_timer()
-  valor = c.raiz_otimizada(valor=x, a=1)
-  fim = timeit.default_timer()
-  loss_function = pow(valor - np.cbrt(x),2)
-  return fim - ini, loss_function
+  valor = c.raiz_otimizada(valor=x, a=a, n_max=n)
+  loss_function = np.power((valor - np.cbrt(x)), 2) 
+  return (timeit.default_timer() - ini) * 1000 * 1000, loss_function
 
 tempo_vector = np.vectorize(tempo)
 for n in enes:
-  print(n)
-  calc, erro = tempo_vector(x,n)
-  medias[n-1] = np.mean(calc)*1000*1000
+  tempos, erro = tempo_vector(x,n,a)
+  medias[n-1] = np.mean(tempos)
   error[n-1] = np.sum(erro)/points
 
 
@@ -35,7 +35,6 @@ ax.tick_params(axis='y', labelcolor=color)
 
 ax2 = ax.twinx()
 
-# plotando 2 gráficos com escalas diferentes
 color = "red"
 ax2.set_ylabel('Erro', color=color) 
 ax2.plot(enes, error, color=color)
