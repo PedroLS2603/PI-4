@@ -13,7 +13,7 @@ def str_poli_taylor(a, n_max=20):
         eq = df_dx(i, potenciaIni, coeficienteIni)
         coeficiente = eq[0]
         potencia = eq[1]
-        str += " + ({0})/{1}!).(x - {2})^{3}".format(round(coeficiente * (a ** potencia), 2), i, a, i)
+        str += " + ({0})/{1}!).(x - {2})^{3}".format(round(coeficiente * (a ** potencia), 7), i, a, i)
         i += 1
     return str 
 
